@@ -1,0 +1,35 @@
+<wux-refresher id="wux-refresher" bind:refresh="onRefresh">
+  <view class="page">
+    <view class="page__hd">
+      <view class="page__title">B超室</view>
+      <view class="page__desc">这里显示的是排队等候列表，预计检查时间仅供参考，请以实际检查时间为准</view>
+    </view>
+    <wux-tabs controlled current="{{ currentTab }}" bindchange="onChange">
+      <wux-tab key="tab1" title="一号窗口"></wux-tab>
+      <wux-tab key="tab2" title="二号窗口"></wux-tab>
+      <wux-tab key="tab3" title="三号窗口"></wux-tab>
+      <wux-tab key="tab4" title="四号窗口"></wux-tab>
+    </wux-tabs>
+    <view wx:if="{{isLoading}}" style="margin-top:320rpx" class="container">
+      <wux-spin wux-class="spin" size="large" />
+    </view>
+    <scroll-view>
+      <view style="margin-top:5rpx">
+        <wux-cell-group wx:if="{{isShowList}}" title="">
+          <block wx:key="id" wx:for="{{patientList}}">
+            <wux-cell  data-id="{{item.id}}" title="{{item.name}}" label="序列号：{{item.sn}}" extra="预计检查时间：{{item.expectTime}}"></wux-cell>
+          </block>
+        </wux-cell-group>
+      </view>
+    </scroll-view>
+
+  </view>
+
+</wux-refresher>
+<!-- <modal title="提醒设置" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+  <view>
+    <wux-button block size="default" bind:click="copy" type="balanced">
+      <wux-icon type="ios-notifications" size="16" /> 将要轮到他检查时通知我</wux-button>
+  </view>
+  <view>点击以上按钮后，当这位病人前面只有一个人等待时，系统将会下发微信通知您。</view>
+</modal> -->
