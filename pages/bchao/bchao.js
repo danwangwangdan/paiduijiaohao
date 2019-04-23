@@ -7,7 +7,7 @@ import {
 Page({
   data: {
     modalHidden: true,
-    currentTab: 'tab1',
+    currentTab: '1号窗口',
     patientList: [],
     isLoading: true,
     isShowList: false,
@@ -24,7 +24,7 @@ Page({
     let current = e.detail.key;
     console.log(current)
     switch (current) {
-      case 'tab1':
+      case '1号窗口':
         setTimeout(function() {
           that.setData({
             isLoading: false,
@@ -51,7 +51,7 @@ Page({
           });
         }, 2000);
         break;
-      case 'tab2':
+      case '2号窗口':
         setTimeout(function() {
           that.setData({
             isLoading: false,
@@ -72,7 +72,7 @@ Page({
           });
         }, 2000);
         break;
-      case 'tab3':
+      case '3号窗口':
         setTimeout(function() {
           that.setData({
             isLoading: false,
@@ -93,7 +93,7 @@ Page({
           });
         }, 2000);
         break;
-      case 'tab4':
+      case '4号窗口':
         setTimeout(function() {
           that.setData({
             isLoading: false,
@@ -126,60 +126,67 @@ Page({
   },
   onShow: function() {
     var that = this;
-    setTimeout(function() {
-      wx.hideNavigationBarLoading() //完成停止加载
-      $stopWuxRefresher() //停止下拉刷新
-      that.setData({
-        isLoading: false,
-        isShowList: true,
-        patientList: [{
-            'id': 124512,
-            'name': '黄士明',
-            'sn': 20,
-            'expectTime': '10:01'
-          },
-          {
-            'id': 124513,
-            'name': '张三',
-            'sn': 21,
-            'expectTime': '10:21'
-          },
-          {
-            'id': 124514,
-            'name': '李四',
-            'sn': 22,
-            'expectTime': '10:41'
+
+    wx.request({
+      url: 'http://24z56z0190.zicp.vip/histool/queue/list?office=B超室&room=2号窗口&ca=1',//+ that.data.currentTab,
+      method: 'GET',
+      success(res) {
+        console.log(res.data);
+        wx.hideNavigationBarLoading() //完成停止加载
+        $stopWuxRefresher() //停止下拉刷新
+        if (res.data.code == 1) {
+          var data = res.data.data;
+          if (data != null && data.length != 0) {
+            that.setData({
+              patientList: data,
+              isLoading: false,
+              isShowList: true
+            });
+          } else {
+            that.setData({
+              patientList: data,
+              isLoading: false,
+              isShowList: false,
+              initialText: "没有人在这里排队..."
+            });
           }
-        ],
-      });
-    }, 2000);
+        }
+      },
+      fail() {
+        wx.showToast({
+          title: '网络请求失败，请稍后重试！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
   },
   onLoad: function() {
-    var that = this;
-    setTimeout(function() {
-      that.setData({
-        isLoading: false,
-        patientList: [{
-            'id': 124512,
-            'name': '黄士明',
-            'sn': 20,
-            'expectTime': '10:01'
-          },
-          {
-            'id': 124513,
-            'name': '张三',
-            'sn': 21,
-            'expectTime': '10:21'
-          },
-          {
-            'id': 124514,
-            'name': '李四',
-            'sn': 22,
-            'expectTime': '10:41'
-          }
-        ],
-      });
-    }, 1000);
+    // var that = this;
+    // setTimeout(function() {
+    //   that.setData({
+    //     isLoading: false,
+    //     patientList: [{
+    //         'id': 124512,
+    //         'name': '黄士明',
+    //         'sn': 20,
+    //         'expectTime': '10:01'
+    //       },
+    //       {
+    //         'id': 124513,
+    //         'name': '张三',
+    //         'sn': 21,
+    //         'expectTime': '10:21'
+    //       },
+    //       {
+    //         'id': 124514,
+    //         'name': '李四',
+    //         'sn': 22,
+    //         'expectTime': '10:41'
+    //       }
+    //     ],
+    //   });
+    // }, 1000);
   },
   toView: function(e) {
     this.setData({

@@ -34,6 +34,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
-  }
+    userInfo: null,
+    //localApiUrl: "http://localhost/hishelp",
+    localApiUrl: "https://www.daliandaxue.cn/hishelp",
+    remoteApiUrl: "",
+  },
 })
