@@ -35,8 +35,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    //localApiUrl: "http://localhost/hishelp",
-    localApiUrl: "https://www.daliandaxue.cn/hishelp",
+    localApiUrl: "http://24z56z0190.zicp.vip/",
+    //localApiUrl: "https://www.daliandaxue.cn/hishelp",
     remoteApiUrl: "",
   },
 })

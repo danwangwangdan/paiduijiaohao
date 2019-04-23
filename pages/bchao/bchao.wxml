@@ -1,5 +1,5 @@
 <wux-refresher id="wux-refresher" bind:refresh="onRefresh">
-  <view class="page">
+  <view  style='{{height}}' class="page">
     <view class="page__hd">
       <view class="page__title">B超室</view>
       <view class="page__desc"> 因病人情况复杂、急诊等不确定因素的存在，本队列结果和预计检查时间仅供参考，请以医生实际叫号为准。</view>
@@ -13,16 +13,20 @@
     <view wx:if="{{isLoading}}" style="margin-top:320rpx" class="container">
       <wux-spin wux-class="spin" size="large" />
     </view>
-    <scroll-view>
-      <view style="margin-top:15rpx">
-        <wux-cell-group wx:if="{{isShowList}}" title="">
-          <block wx:key="id" wx:for="{{patientList}}">
-            <wux-cell  data-id="{{item.id}}" title="{{item.name}}" label="序列号：{{item.sn}}" extra="预计检查时间：{{item.esTime}}"></wux-cell>
-          </block>
-        </wux-cell-group>
-      </view>
-    </scroll-view>
-
+    <view>
+      <scroll-view>
+        <view wx:if="{{!isNull}}" style="margin-top:15rpx">
+          <wux-cell-group title="">
+            <block wx:key="id" wx:for="{{patientList}}">
+              <wux-cell data-id="{{item.id}}" title="{{item.name}}" label="序列号：{{item.sn}}" extra="预计检查时间：{{item.esTime}}"></wux-cell>
+            </block>
+          </wux-cell-group>
+        </view>
+        <view wx:if="{{isNull}}" style="margin-top:250rpx" class="wux-text--center">
+          <text style='color:#80848f'>{{initialText}}</text>
+        </view>
+      </scroll-view>
+    </view>
   </view>
 
 </wux-refresher>

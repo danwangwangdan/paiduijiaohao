@@ -1,10 +1,12 @@
 {
   "pages": [
-    "pages/bchao/bchao",
     "pages/index/index",
-    "pages/ct/ct",
+    "pages/ndt/ndt",
+    "pages/xdt/xdt",
     "pages/dr/dr",
+    "pages/ct/ct",
     "pages/neikuijing/neikuijing",
+    "pages/bchao/bchao",
     "pages/logs/logs"
   ],
   "window": {

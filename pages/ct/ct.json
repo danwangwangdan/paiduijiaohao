@@ -6,6 +6,7 @@
     "wux-input": "../../plugins/wux/input/index",
     "wux-row": "../../plugins/wux/row/index",
     "wux-col": "../../plugins/wux/col/index",
+    "wux-spin": "../../plugins/wux/spin/index",
     "wux-avatar": "../../plugins/wux/avatar/index",
     "wux-notice-bar": "../../plugins/wux/wing-blank/index",
     "wux-white-space": "../../plugins/wux/white-space/index",
@@ -19,7 +20,11 @@
     "wux-image": "../../plugins/wux/image/index",
     "wux-divider": "../../plugins/wux/divider/index",
     "wux-card": "../../plugins/wux/card/index",
-    "wux-wing-blank": "../../plugins/wux/wing-blank/index"
+    "wux-wing-blank": "../../plugins/wux/wing-blank/index",
+    "wux-tabs": "../../plugins/wux/tabs/index",
+    "wux-tab": "../../plugins/wux/tab/index",
+    "wux-badge": "../../plugins/wux/badge/index",
+    "wux-refresher": "../../plugins/wux/refresher/index"
   },
-  "navigationBarTitleText": "科室选择"
+  "navigationBarTitleText": "CT室"
 }

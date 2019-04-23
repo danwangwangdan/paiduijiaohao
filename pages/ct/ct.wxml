@@ -1,15 +1,36 @@
-<view class="page">
-  <view class="page__hd">
-    <view class="page__title">选择检查科室</view>
-    <view class="page__desc">请选择想要查看的科室排队叫号信息</view>
+<wux-refresher id="wux-refresher" bind:refresh="onRefresh">
+  <view  style='{{height}}' class="page">
+    <view class="page__hd">
+      <view class="page__title">CT室</view>
+      <view class="page__desc"> 因病人情况复杂、急诊等不确定因素的存在，本队列结果和预计检查时间仅供参考，请以医生实际叫号为准。</view>
+    </view>
+    <wux-tabs controlled current="{{ currentTab }}" bindchange="onChange">
+      <wux-tab key="主窗口" title="主窗口"></wux-tab>
+    </wux-tabs>
+    <view wx:if="{{isLoading}}" style="margin-top:320rpx" class="container">
+      <wux-spin wux-class="spin" size="large" />
+    </view>
+    <view>
+      <scroll-view>
+        <view wx:if="{{!isNull}}" style="margin-top:15rpx">
+          <wux-cell-group title="">
+            <block wx:key="id" wx:for="{{patientList}}">
+              <wux-cell data-id="{{item.id}}" title="{{item.name}}" label="序列号：{{item.sn}}" extra="预计检查时间：{{item.esTime}}"></wux-cell>
+            </block>
+          </wux-cell-group>
+        </view>
+        <view wx:if="{{isNull}}" style="margin-top:250rpx" class="wux-text--center">
+          <text style='color:#80848f'>{{initialText}}</text>
+        </view>
+      </scroll-view>
+    </view>
   </view>
-  <wux-cell-group title="">
-    <wux-cell title="B超室" openType extra="门诊部三楼"></wux-cell>
-    <wux-cell title="内窥镜室" openType extra="门诊部三楼"></wux-cell>
-    <wux-cell title="CT室" openType extra="转转楼三楼"></wux-cell>
-    <wux-cell title="DR室" openType extra="转转楼一楼"></wux-cell>
-  </wux-cell-group>
-   <view style="margin-top:60rpx">
-    <wux-divider text="更多科室加入中..." />
+
+</wux-refresher>
+<!-- <modal title="提醒设置" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+  <view>
+    <wux-button block size="default" bind:click="copy" type="balanced">
+      <wux-icon type="ios-notifications" size="16" /> 将要轮到他检查时通知我</wux-button>
   </view>
-</view>
+  <view>点击以上按钮后，当这位病人前面只有一个人等待时，系统将会下发微信通知您。</view>
+</modal> -->

@@ -1,13 +1,11 @@
 <wux-refresher id="wux-refresher" bind:refresh="onRefresh">
   <view  style='{{height}}' class="page">
     <view class="page__hd">
-      <view class="page__title">内窥镜室</view>
+      <view class="page__title">脑电图室</view>
       <view class="page__desc"> 因病人情况复杂、急诊等不确定因素的存在，本队列结果和预计检查时间仅供参考，请以医生实际叫号为准。</view>
     </view>
     <wux-tabs controlled current="{{ currentTab }}" bindchange="onChange">
-      <wux-tab key="普通胃镜" title="普通胃镜"></wux-tab>
-      <wux-tab key="无痛胃镜" title="无痛胃镜"></wux-tab>
-      <wux-tab key="电子肠镜" title="电子肠镜"></wux-tab>
+      <wux-tab key="6号窗口" title="6号窗口"></wux-tab>
     </wux-tabs>
     <view wx:if="{{isLoading}}" style="margin-top:320rpx" class="container">
       <wux-spin wux-class="spin" size="large" />

@@ -6,11 +6,13 @@ import {
 } from '../../plugins/wux/index'
 Page({
   data: {
+    height: 'height:0rpx',
     modalHidden: true,
     currentTab: '1号窗口',
     patientList: [],
     isLoading: true,
-    isShowList: false,
+    isNull: false,
+    initialText: ''
   },
   onChange(e) {
     var that = this;
@@ -19,103 +21,44 @@ Page({
       currentTab: e.detail.key,
       isLoading: true,
       patientList: [],
-      isShowList: false,
+      isNull: true,
+      initialText: ''
     });
     let current = e.detail.key;
-    console.log(current)
-    switch (current) {
-      case '1号窗口':
-        setTimeout(function() {
-          that.setData({
-            isLoading: false,
-            isShowList: true,
-            patientList: [{
-                'id': 124512,
-                'name': '黄士明',
-                'sn': 20,
-                'expectTime': '10:01'
-              },
-              {
-                'id': 124513,
-                'name': '张三',
-                'sn': 21,
-                'expectTime': '10:21'
-              },
-              {
-                'id': 124514,
-                'name': '李四',
-                'sn': 22,
-                'expectTime': '10:41'
-              }
-            ],
-          });
-        }, 2000);
-        break;
-      case '2号窗口':
-        setTimeout(function() {
-          that.setData({
-            isLoading: false,
-            isShowList: true,
-            patientList: [{
-                'id': 124512,
-                'name': '黄士明',
-                'sn': 20,
-                'expectTime': '10:01'
-              },
-              {
-                'id': 124513,
-                'name': '张三',
-                'sn': 21,
-                'expectTime': '10:21'
-              }
-            ],
-          });
-        }, 2000);
-        break;
-      case '3号窗口':
-        setTimeout(function() {
-          that.setData({
-            isLoading: false,
-            isShowList: true,
-            patientList: [{
-                'id': 124513,
-                'name': '张三',
-                'sn': 21,
-                'expectTime': '10:21'
-              },
-              {
-                'id': 124514,
-                'name': '李四',
-                'sn': 22,
-                'expectTime': '10:41'
-              }
-            ],
-          });
-        }, 2000);
-        break;
-      case '4号窗口':
-        setTimeout(function() {
-          that.setData({
-            isLoading: false,
-            isShowList: true,
-            patientList: [{
-                'id': 124512,
-                'name': '黄士明',
-                'sn': 20,
-                'expectTime': '10:01'
-              },
-
-              {
-                'id': 124514,
-                'name': '李四',
-                'sn': 22,
-                'expectTime': '10:41'
-              }
-            ],
-          });
-        }, 2000);
-    }
-
+    console.log(current);
+    wx.request({
+      url: app.globalData.localApiUrl + 'histool/queue/list?office=B超室&room=' + current + '&ca=1',
+      method: 'GET',
+      success(res) {
+        console.log(res.data);
+        wx.hideNavigationBarLoading() //完成停止加载
+        $stopWuxRefresher() //停止下拉刷新
+        if (res.data.code == 1) {
+          var data = res.data.data;
+          console.log("数组大小：" + data.length);
+          if (data != null && data.length != 0) {
+            that.setData({
+              patientList: data,
+              isLoading: false,
+              isNull: false
+            });
+          } else {
+            that.setData({
+              initialText: '这个地方还没有人在排队',
+              isLoading: false,
+              isNull: true
+            });
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          title: '网络请求失败，请稍后重试！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -124,11 +67,24 @@ Page({
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
+  onReady: function () {
+    var that = this;
+    console.log("onReady")
+    var res = wx.getSystemInfoSync();
+    that.setData({
+      height: "height:" + res.windowHeight + "px"
+    })
+  },
   onShow: function() {
     var that = this;
-
+    that.setData({
+      isLoading: true,
+      isNull: true,
+      patientList: [],
+      initialText: ''
+    });
     wx.request({
-      url: 'http://24z56z0190.zicp.vip/histool/queue/list?office=B超室&room=2号窗口&ca=1',//+ that.data.currentTab,
+      url: app.globalData.localApiUrl + 'histool/queue/list?office=B超室&room=' + that.data.currentTab +'&ca=1',//+ that.data.currentTab,
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -136,18 +92,18 @@ Page({
         $stopWuxRefresher() //停止下拉刷新
         if (res.data.code == 1) {
           var data = res.data.data;
+          console.log("数组大小：" + data.length);
           if (data != null && data.length != 0) {
             that.setData({
               patientList: data,
               isLoading: false,
-              isShowList: true
+              isNull: false
             });
           } else {
             that.setData({
-              patientList: data,
+              initialText: '这个地方还没有人在排队',
               isLoading: false,
-              isShowList: false,
-              initialText: "没有人在这里排队..."
+              isNull: true
             });
           }
         }
@@ -162,31 +118,7 @@ Page({
     });
   },
   onLoad: function() {
-    // var that = this;
-    // setTimeout(function() {
-    //   that.setData({
-    //     isLoading: false,
-    //     patientList: [{
-    //         'id': 124512,
-    //         'name': '黄士明',
-    //         'sn': 20,
-    //         'expectTime': '10:01'
-    //       },
-    //       {
-    //         'id': 124513,
-    //         'name': '张三',
-    //         'sn': 21,
-    //         'expectTime': '10:21'
-    //       },
-    //       {
-    //         'id': 124514,
-    //         'name': '李四',
-    //         'sn': 22,
-    //         'expectTime': '10:41'
-    //       }
-    //     ],
-    //   });
-    // }, 1000);
+   
   },
   toView: function(e) {
     this.setData({

@@ -8,7 +8,7 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
-    currentTab: '主窗口',
+    currentTab: '6号窗口',
     patientList: [],
     isLoading: true,
     isNull: false,
@@ -38,7 +38,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + 'histool/queue/list?office=CT室&room=CT二诊室'+ '&ca=1',//+ that.data.currentTab,
+      url: app.globalData.localApiUrl + 'histool/queue/list?office=脑电图室&room=6号'+ '&ca=1',//+ that.data.currentTab,
       method: 'GET',
       success(res) {
         console.log(res.data);
