@@ -38,7 +38,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + 'histool/queue/list?office=CT室&room=CT二诊室'+ '&ca=1',//+ that.data.currentTab,
+      url: app.globalData.localApiUrl + '/common/queue?office=CT室&room=CT二诊室'+ '&ca=1',//+ that.data.currentTab,
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -55,7 +55,7 @@ Page({
             });
           } else {
             that.setData({
-              initialText: '这个地方还没有人在排队',
+              initialText: '这个窗口还没有人在排队',
               isLoading: false,
               isNull: true
             });
