@@ -13,7 +13,9 @@ Page({
     patientList: [],
     isLoading: true,
     isNull: false,
-    initialText: ''
+    initialText: '',
+    isBtnDis: false,
+    clickOne: 0
   },
   onChange(e) {
     var that = this;
@@ -68,7 +70,7 @@ Page({
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
-  onReady: function () {
+  onReady: function() {
     var that = this;
     console.log("onReady")
     var res = wx.getSystemInfoSync();
@@ -119,7 +121,7 @@ Page({
     });
   },
   onLoad: function() {
-   
+
   },
   toView: function(e) {
     this.setData({
@@ -127,6 +129,49 @@ Page({
     });
     let patientId = e.currentTarget.dataset.id;
     console.log('病人ID:' + patientId);
+  },
+  toClick: function(e) {
+    let patientId = e.currentTarget.dataset.id;
+    this.setData({
+      clickOne: patientId,
+      isBtnDis: true
+    })
+  },
+  toNotify: function() {
+    var that = this;
+    wx.request({
+      url: app.globalData.localApiUrl + '/common/notify?pid=' + that.data.clickOne + '&ca=' + util.generateCA(),
+      method: 'GET',
+      success(res) {
+        console.log(res.data);
+        wx.hideNavigationBarLoading() //完成停止加载
+        $stopWuxRefresher() //停止下拉刷新
+        if (res.data.code == 1) {
+          var data = res.data.data;
+          if (data.code == 1) {
+            wx.showToast({
+              title: '设置提醒成功，请留意微信服务通知消息！',
+              icon: 'none',
+              duration: 2000
+            })
+          } else {
+            wx.showToast({
+              title: '服务器异常，请稍后重试！',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          title: '网络请求失败，请稍后重试！',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    });
+
   },
   modalCandel: function() {
     this.setData({
