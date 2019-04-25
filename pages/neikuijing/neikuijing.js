@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var util = require('../../data.js');
 import {
   $stopWuxRefresher
 } from '../../plugins/wux/index'
@@ -27,7 +28,7 @@ Page({
     let current = e.detail.key;
     console.log(current);
     wx.request({
-      url: app.globalData.localApiUrl + '/common/queue?office=内窥镜室&room=' + current + '&ca=1',
+      url: app.globalData.localApiUrl + '/common/queue?office=内窥镜室&room=' + current + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -94,7 +95,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/common/queue?office=内窥镜室&room=' + that.data.currentTab + '&ca=1', //+ that.data.currentTab,
+      url: app.globalData.localApiUrl + '/common/queue?office=内窥镜室&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);

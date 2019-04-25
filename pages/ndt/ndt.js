@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+var util = require('../../data.js');
 import {
   $stopWuxRefresher
 } from '../../plugins/wux/index'
@@ -38,7 +39,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/common/queue?office=脑电图室&room=7号窗口'+ '&ca=1',//+ that.data.currentTab,
+      url: app.globalData.localApiUrl + '/common/queue?office=脑电图室&room=7号窗口' + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
