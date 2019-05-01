@@ -8,10 +8,13 @@
     <wux-cell title="心电图室" is-link url="/pages/xdt/xdt" extra="门诊部三楼"></wux-cell>
     <wux-cell title="脑电图室" is-link url="/pages/ndt/ndt" extra="门诊部三楼"></wux-cell>
     <wux-cell title="内窥镜室" is-link url="/pages/neikuijing/neikuijing" extra="门诊部三楼"></wux-cell>
-    <wux-cell title="DR室" is-link url="/pages/dr/dr" extra="转转楼一楼"></wux-cell>
-    <wux-cell title="CT室" is-link url="/pages/ct/ct" extra="转转楼三楼"></wux-cell>
+    <wux-cell title="DR室" is-link url="/pages/dr/dr" extra="放射楼一楼"></wux-cell>
+    <wux-cell title="CT室" is-link url="/pages/ct/ct" extra="放射楼三楼"></wux-cell>
   </wux-cell-group>
-  <view style="margin-top:80rpx">
+  <!-- <view style="margin-top:80rpx">
     <wux-divider text="更多科室加入中..." />
+  </view> -->
+  <view class="footer">
+    <text style='font-size:13px; color: = "../../pics/me_photo.png"#80848f'>技术支持： 新晃县人民医院@网络中心</text>
   </view>
 </view>
