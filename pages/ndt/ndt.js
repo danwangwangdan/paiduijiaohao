@@ -39,7 +39,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/common/queue?office=脑电图室&room=7号窗口' + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=脑电图室&room=7号窗口' + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);

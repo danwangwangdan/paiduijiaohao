@@ -2,7 +2,7 @@
 App({
   globalData: {
     userInfo: null,
-    localApiUrl: "https://www.daliandaxue.cn/hishelp",
+    localApiUrl: "https://loveshiming.oicp.vip/histool",
     //localApiUrl: "https://www.daliandaxue.cn/hishelp",
     remoteApiUrl: ""
   },

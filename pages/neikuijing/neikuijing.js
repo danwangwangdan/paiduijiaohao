@@ -28,7 +28,7 @@ Page({
     let current = e.detail.key;
     console.log(current);
     wx.request({
-      url: app.globalData.localApiUrl + '/common/queue?office=内窥镜室&room=' + current + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=内窥镜室&room=' + current + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -95,7 +95,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/common/queue?office=内窥镜室&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=内窥镜室&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
