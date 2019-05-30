@@ -1,0 +1,19 @@
+
+<view style="margin-left: 40rpx;margin-right: 40rpx;">
+<view class="wux-text--center" style="margin-top: 40rpx;font-size: 60rpx;">程序使用说明</view>
+<text>
+◆适用场景：
+</text>
+<text decode="{{true}}">
+&nbsp;&nbsp;&nbsp;&nbsp;1. 当前等待窗口人数过多时，您可以选择优先做等待人数相对较少的检查项目，或者先去处理其他事情。
+&nbsp;&nbsp;&nbsp;&nbsp;2. 住院病人需要检查时，可以提前查看当前等待人数，等人少时再去相应科室检查。
+</text>
+<text>
+◆注意事项：
+</text>
+<text decode="{{true}}">
+&nbsp;&nbsp;&nbsp;&nbsp;1. 由于经常有病人呼叫后却没来检查，导致排队数据可能稍有误差。这种病人还会排在队首，但他的入队时间经常与下一个病人相隔甚远。医生会根据当时实际情况不选择呼叫该病人。
+&nbsp;&nbsp;&nbsp;&nbsp;2. 因各种特殊情况的存在，本排队数据仅供参考，请以医生实际叫号次序为准。
+&nbsp;&nbsp;&nbsp;&nbsp;3. 每次重新进入该程序时数据均会自动刷新，您也可以在排队列表直接下拉刷新列表数据。
+</text>
+</view>

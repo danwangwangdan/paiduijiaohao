@@ -12,10 +12,16 @@
     <wux-cell title="DR室" is-link url="/pages/dr/dr" extra="放射楼一楼"></wux-cell>
     <wux-cell title="CT室" is-link url="/pages/ct/ct" extra="放射楼三楼"></wux-cell>
   </wux-cell-group>
-  <!-- <view style="margin-top:80rpx">
-    <wux-divider text="更多科室加入中..." />
-  </view> -->
+   <view style='margin-top:40rpx;margin-left:60rpx;margin-right:60rpx;'>
+    <wux-button block size="default " bind:click="toHelp" type="balanced ">
+      <wux-icon type="ios-help-circle " size="17 " /> 使用说明</wux-button>
+    <wux-button block size="default " outline  openType='feedback'  type="balanced ">
+      <wux-icon type="ios-bulb" size="17 " /> 意见反馈</wux-button>
+    
+  </view>
+
   <view class="footer">
-    <text style='font-size:13px; color: = "../../pics/me_photo.png"#80848f'>技术支持： 新晃县人民医院@网络中心</text>
+    <text style='font-size:26rpx; color: = "../../pics/me_photo.png"#80848f'>技术支持： 新晃县人民医院@网络中心</text>
   </view>
 </view>
+<ion-icon name="help-circle"></ion-icon>
