@@ -9,7 +9,7 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
-    currentTab: '7号窗口',
+    currentTab: 'no6',
     patientList: [],
     isLoading: true,
     isNull: false,
@@ -36,10 +36,11 @@ Page({
       isLoading: true,
       isNull: true,
       patientList: [],
-      initialText: ''
+      initialText: '',
+      count:0
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/queue/list?office=心电图室&room=6号窗口' + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=xdts&room=no6' + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -52,20 +53,22 @@ Page({
             that.setData({
               patientList: data,
               isLoading: false,
-              isNull: false
+              isNull: false,
+              count: data.length
             });
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count: 0
             });
           }
         }
       },
-      fail() {
+      fail(e) {
         wx.showToast({
-          title: '网络请求失败，请稍后重试！',
+          title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
           duration: 2000
         })

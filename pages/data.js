@@ -7,7 +7,6 @@ module.exports = {
 function generateCA() {
   var myDate = new Date();
   var str = "WLZX" + (myDate.getDay() + 1) + (myDate.getMonth + 1);
-  console.log(str);
   return sha1(str);
 };
 

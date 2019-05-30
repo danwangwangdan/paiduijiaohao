@@ -9,13 +9,14 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
-    currentTab: '主窗口',
+    currentTab: 'dr2',
     patientList: [],
     isLoading: true,
     isNull: false,
     isBtnDis: false, 
     initialText: '',
-    clickOne: 0
+    clickOne: 0,
+    count: 0
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -41,7 +42,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/queue/list?office=DR室&room=照片二室' + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=drs&room=dr2' + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -54,24 +55,26 @@ Page({
             that.setData({
               patientList: data,
               isLoading: false,
-              isNull: false
+              isNull: false,
+              count: data.length
             });
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count: 0
             });
           }
         }
       },
-      fail() {
-        wx.showToast({
-          title: '网络请求失败，请稍后重试！',
-          icon: 'none',
-          duration: 2000
-        })
-      }
+        fail(e) {
+            wx.showToast({
+                title: '连接服务器失败,' + e.errMsg,
+                icon: 'none',
+                duration: 2000
+            })
+        }
     });
   },
   onLoad: function () {
@@ -116,13 +119,13 @@ Page({
           }
         }
       },
-      fail() {
-        wx.showToast({
-          title: '网络请求失败，请稍后重试！',
-          icon: 'none',
-          duration: 2000
-        })
-      }
+        fail(e) {
+            wx.showToast({
+                title: '连接服务器失败,' + e.errMsg,
+                icon: 'none',
+                duration: 2000
+            })
+        }
     });
 
   },

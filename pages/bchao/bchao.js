@@ -9,13 +9,17 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
-    currentTab: '1号窗口',
+    currentTab: 'no1',
     patientList: [],
     isLoading: true,
     isNull: false,
     initialText: '',
     isBtnDis: false,
-    clickOne: 0
+    clickOne: 0,
+    count1: 0,
+    count2: 0,
+    count3: 0,
+    count4: 0
   },
   onChange(e) {
     var that = this;
@@ -28,9 +32,9 @@ Page({
       initialText: ''
     });
     let current = e.detail.key;
-    console.log(current);
+    console.log("current:" + current);
     wx.request({
-      url: app.globalData.localApiUrl + '/queue/list?office=B超室&room=' + current + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=bcs&room=' + current + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -45,18 +49,52 @@ Page({
               isLoading: false,
               isNull: false
             });
+            if (current == 'no1') {
+              that.setData({
+                count1: data.length,
+                count2: 0,
+                count3: 0,
+                count4: 0
+              });
+            } else if (current == 'no2') {
+              that.setData({
+                count2: data.length,
+                count1: 0,
+                count3: 0,
+                count4: 0
+              });
+            } else if (current == 'no3') {
+              that.setData({
+                count3: data.length,
+                count2: 0,
+                count1: 0,
+                count4: 0
+              });
+            }
+            else if (current == 'no4') {
+              that.setData({
+                count4: data.length,
+                count2: 0,
+                count1: 0,
+                count3: 0
+              });
+            }
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count2: 0,
+              count1: 0,
+              count3: 0,
+              count4: 0
             });
           }
         }
       },
-      fail() {
+      fail(e) {
         wx.showToast({
-          title: '网络请求失败，请稍后重试！',
+          title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
           duration: 2000
         })
@@ -80,6 +118,7 @@ Page({
   },
   onShow: function() {
     var that = this;
+    console.log("onShow")
     that.setData({
       isLoading: true,
       isNull: true,
@@ -87,7 +126,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/queue/list?office=B超室&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=bcs&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -100,20 +139,22 @@ Page({
             that.setData({
               patientList: data,
               isLoading: false,
-              isNull: false
+              isNull: false,
+              count1: data.length
             });
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count1: 0
             });
           }
         }
       },
-      fail() {
+      fail(e) {
         wx.showToast({
-          title: '网络请求失败，请稍后重试！',
+          title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
           duration: 2000
         })
@@ -163,9 +204,9 @@ Page({
           }
         }
       },
-      fail() {
+      fail(e) {
         wx.showToast({
-          title: '网络请求失败，请稍后重试！',
+          title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
           duration: 2000
         })

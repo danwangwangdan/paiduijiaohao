@@ -9,11 +9,14 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
-    currentTab: '普通胃镜',
+    currentTab: 'ptwj',
     patientList: [],
     isLoading: true,
     isNull: false,
-    initialText: ''
+    initialText: '',
+    count1: 0,
+    count2: 0,
+    count3: 0
   },
   onChange(e) {
     var that = this;
@@ -28,7 +31,7 @@ Page({
     let current = e.detail.key;
     console.log(current);
     wx.request({
-      url: app.globalData.localApiUrl + '/queue/list?office=内窥镜室&room=' + current + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=wcjs&room=' + current + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -43,11 +46,33 @@ Page({
               isLoading: false,
               isNull: false
             });
+            if (current == 'ptwj') {
+              that.setData({
+                count1: data.length,
+                count2: 0,
+                count3: 0
+              });
+            } else if (current == 'wtwj') {
+              that.setData({
+                count2: data.length,
+                count1: 0,
+                count3: 0
+              });
+            } else if (current == 'dzcj') {
+              that.setData({
+                count3: data.length,
+                count2: 0,
+                count1: 0
+              });
+            }
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count2: 0,
+              count1: 0,
+              count3: 0,
             });
           }
         } else {
@@ -62,9 +87,9 @@ Page({
           })
         }
       },
-      fail() {
+      fail(e) {
         wx.showToast({
-          title: '网络请求失败，请稍后重试！',
+          title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
           duration: 2000
         })
@@ -95,7 +120,7 @@ Page({
       initialText: ''
     });
     wx.request({
-      url: app.globalData.localApiUrl + '/queue/list?office=内窥镜室&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
+      url: app.globalData.localApiUrl + '/queue/list?office=wcjs&room=' + that.data.currentTab + '&ca=' + util.generateCA(),
       method: 'GET',
       success(res) {
         console.log(res.data);
@@ -108,13 +133,15 @@ Page({
             that.setData({
               patientList: data,
               isLoading: false,
-              isNull: false
+              isNull: false,
+              count1:data.length
             });
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count1:0
             });
           }
         } else {
@@ -129,9 +156,9 @@ Page({
           })
         }
       },
-      fail() {
+      fail(e) {
         wx.showToast({
-          title: '网络请求失败，请稍后重试！',
+          title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
           duration: 2000
         })
