@@ -20,7 +20,7 @@
 
   </view>
   <!--圆形点击框  -->
-  <view class="round-click">
+  <view wx:if="{{isShow}}" class="round-click">
     <view bindtap="toPro" >抖音去水印</view>
   </view>
 
