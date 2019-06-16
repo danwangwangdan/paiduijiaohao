@@ -1,6 +1,6 @@
 
 <view style="margin-left: 40rpx;margin-right: 40rpx;">
-<view class="wux-text--center" style="margin-top: 40rpx;font-size: 60rpx;">程序使用说明</view>
+<view class="wux-text--center" style="margin-top: 40rpx;font-size: 48rpx;">程序使用说明</view>
 <text>
 ◆适用场景：
 </text>

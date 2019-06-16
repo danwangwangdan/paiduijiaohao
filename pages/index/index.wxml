@@ -1,4 +1,4 @@
-<add-tips/>
+<!-- <add-tips/> -->
 <view class="page">
   <view class="page__hd">
     <view class="page__title">选择检查科室</view>
@@ -6,22 +6,25 @@
   </view>
   <wux-cell-group title="">
     <wux-cell title="B超室" is-link url="/pages/bchao/bchao" extra="门诊部三楼"></wux-cell>
-    <wux-cell title="心电图室" is-link url="/pages/xdt/xdt" extra="门诊部三楼"></wux-cell>
+    <wux-cell title="心/肌电图室" is-link url="/pages/xdt/xdt" extra="门诊部三楼"></wux-cell>
     <wux-cell title="脑电图室" is-link url="/pages/ndt/ndt" extra="门诊部三楼"></wux-cell>
     <wux-cell title="胃肠镜室" is-link url="/pages/neikuijing/neikuijing" extra="门诊部三楼"></wux-cell>
-    <wux-cell title="DR室" is-link url="/pages/dr/dr" extra="放射楼一楼"></wux-cell>
+    <wux-cell title="照片室" is-link url="/pages/dr/dr" extra="放射楼一楼"></wux-cell>
     <wux-cell title="CT室" is-link url="/pages/ct/ct" extra="放射楼三楼"></wux-cell>
   </wux-cell-group>
-   <view style='margin-top:40rpx;margin-left:60rpx;margin-right:60rpx;'>
+  <view style='margin-top:40rpx;margin-left:60rpx;margin-right:60rpx;'>
     <wux-button block size="default " bind:click="toHelp" type="balanced ">
       <wux-icon type="ios-help-circle " size="17 " /> 使用说明</wux-button>
-    <wux-button block size="default " outline  openType='feedback'  type="balanced ">
+    <wux-button block size="default " outline openType='feedback' type="balanced ">
       <wux-icon type="ios-bulb" size="17 " /> 意见反馈</wux-button>
-    
+
+  </view>
+  <!--圆形点击框  -->
+  <view class="round-click">
+    <view bindtap="toPro" >抖音去水印</view>
   </view>
 
   <view class="footer">
     <text style='font-size:26rpx; color: = "../../pics/me_photo.png"#80848f'>技术支持： 新晃县人民医院@网络中心</text>
   </view>
 </view>
-<ion-icon name="help-circle"></ion-icon>

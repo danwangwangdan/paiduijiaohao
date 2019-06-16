@@ -21,6 +21,18 @@ Page({
       url: '../help/help'
     })
   },
+  //事件处理函数
+  toPro: function () {
+    console.log("即将跳转")
+    wx.navigateToMiniProgram({
+      appId: 'wx0e4df37b700d52d1',
+      path: 'pages/index/index',
+      envVersion: 'release',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
   onLoad: function () {
    
   }
