@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/bchao/bchao",
     "pages/help/help",
     "pages/ndt/ndt",
     "pages/xdt/xdt",
     "pages/dr/dr",
     "pages/ct/ct",
     "pages/neikuijing/neikuijing",
-    "pages/bchao/bchao",
     "pages/logs/logs"
   ],
   "window": {
@@ -20,7 +20,7 @@
     "request": 15000,
     "uploadFile": 15000
   },
-  "navigateToMiniProgramAppIdList":[
+  "navigateToMiniProgramAppIdList": [
     "wx0e4df37b700d52d1"
   ],
   "sitemapLocation": "sitemap.json"

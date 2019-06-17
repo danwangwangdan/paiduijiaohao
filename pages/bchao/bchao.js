@@ -9,6 +9,7 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
+    isAdShow: true,
     currentTab: 'no1',
     patientList: [],
     isLoading: true,

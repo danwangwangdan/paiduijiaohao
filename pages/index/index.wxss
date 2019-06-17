@@ -4,7 +4,7 @@
     background-color: #0997DC;
     border-radius: 100%;
     position: fixed;
-    bottom: 150rpx;
+    bottom: 80rpx;
     right: 20rpx;
     display: flex;
     align-items: center;

@@ -4,6 +4,7 @@
       <view class="page__title">B超室</view>
       <view class="page__desc"> 本排队信息仅供参考，请以医生叫号时间为准。入队时间距现在过长的病人可能是因为多次呼叫未到，医生可能会选择不呼叫这类病人</view>
     </view>
+    
     <wux-tabs controlled current="{{ currentTab }}" bindchange="onChange">
       <wux-tab key="no1">
         <wux-badge count="{{count1}}">一号窗口</wux-badge>
@@ -23,15 +24,20 @@
     </view>
     <view>
       <scroll-view>
+       <ad wx:if="{{isAdShow}}" unit-id="adunit-9dcb6c0aaea9675e"></ad>
         <view wx:if="{{!isNull}}" style="margin-top:15rpx">
+        
           <wux-cell-group title="">
             <block wx:key="id" wx:for="{{patientList}}">
               <wux-cell data-id="{{item.id}}" title="{{item.name}}" label="序列号：{{item.sn}}，前面还有：{{item.frontNo}}人" bindtap="toClick" extra="{{item.esTime}}"></wux-cell>
+             
             </block>
           </wux-cell-group>
         </view>
         <view wx:if="{{isNull}}" style="margin-top:250rpx" class="wux-text--center">
+         
           <text style='color:#80848f'>{{initialText}}</text>
+          
         </view>
       </scroll-view>
     </view>
