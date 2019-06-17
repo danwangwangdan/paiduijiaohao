@@ -9,7 +9,7 @@ Page({
   data: {
     height: 'height:0rpx',
     modalHidden: true,
-    isAdShow: true,
+    isAdShow: false,
     currentTab: 'no1',
     patientList: [],
     isLoading: true,
@@ -44,6 +44,15 @@ Page({
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
+          if (data.length >= 6) {
+            that.setData({
+              isAdShow: true
+            });
+          } else {
+            that.setData({
+              isAdShow: false
+            });
+          }
           if (data != null && data.length != 0) {
             that.setData({
               patientList: data,
@@ -71,8 +80,7 @@ Page({
                 count1: 0,
                 count4: 0
               });
-            }
-            else if (current == 'no4') {
+            } else if (current == 'no4') {
               that.setData({
                 count4: data.length,
                 count2: 0,
@@ -136,6 +144,15 @@ Page({
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
+          if (data.length >= 6) {
+            that.setData({
+              isAdShow: true
+            });
+          } else {
+            that.setData({
+              isAdShow: false
+            });
+          }
           if (data != null && data.length != 0) {
             that.setData({
               patientList: data,

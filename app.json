@@ -7,8 +7,7 @@
     "pages/xdt/xdt",
     "pages/dr/dr",
     "pages/ct/ct",
-    "pages/neikuijing/neikuijing",
-    "pages/logs/logs"
+    "pages/neikuijing/neikuijing"
   ],
   "window": {
     "backgroundTextStyle": "light",

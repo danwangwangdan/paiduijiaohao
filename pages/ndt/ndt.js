@@ -11,6 +11,7 @@ Page({
     modalHidden: true,
     currentTab: 'no7',
     patientList: [],
+    isAdShow: false,
     isLoading: true,
     isNull: false,
     initialText: '',
@@ -49,6 +50,15 @@ Page({
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
+          if (data.length >= 6) {
+            that.setData({
+              isAdShow: true
+            });
+          } else {
+            that.setData({
+              isAdShow: false
+            });
+          }
           if (data != null && data.length != 0) {
             that.setData({
               patientList: data,

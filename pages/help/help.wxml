@@ -1,14 +1,14 @@
 
 <view style="margin-left: 40rpx;margin-right: 40rpx;">
 <view class="wux-text--center" style="margin-top: 40rpx;font-size: 48rpx;">程序使用说明</view>
-<text>
+<text style="font-size: 35rpx;">
 ◆适用场景：
 </text>
 <text decode="{{true}}">
 &nbsp;&nbsp;&nbsp;&nbsp;1. 当前等待窗口人数过多时，您可以选择优先做等待人数相对较少的检查项目，或者先去处理其他事情。
 &nbsp;&nbsp;&nbsp;&nbsp;2. 住院病人需要检查时，可以提前查看当前等待人数，等人少时再去相应科室检查。
 </text>
-<text>
+<text style="font-size: 35rpx;">
 ◆注意事项：
 </text>
 <text decode="{{true}}">

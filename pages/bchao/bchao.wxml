@@ -44,10 +44,10 @@
   </view>
 
 </wux-refresher>
-<modal title="提醒设置" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+<!-- <modal title="提醒设置" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
   <view>
     <wux-button disabled="{{isBtnDis}}" block size="default" bind:click="toNotify" type="balanced">
       <wux-icon type="ios-notifications" size="16" /> 将要轮到他检查时通知我</wux-button>
   </view>
   <view>点击以上按钮后，当这位病人前面只有三个人等待时，系统将会下发微信通知您。</view>
-</modal>
+</modal> -->

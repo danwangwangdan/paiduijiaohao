@@ -20,6 +20,7 @@
     </view>
     <view>
       <scroll-view>
+        <ad wx:if="{{isAdShow}}" unit-id="adunit-9dcb6c0aaea9675e"></ad>
         <view wx:if="{{!isNull}}" style="margin-top:15rpx">
           <wux-cell-group title="">
             <block wx:key="id" wx:for="{{patientList}}">
