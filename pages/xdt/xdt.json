@@ -26,5 +26,5 @@
     "wux-badge": "../../plugins/wux/badge/index",
     "wux-refresher": "../../plugins/wux/refresher/index"
   },
-  "navigationBarTitleText": "心电图室"
+  "navigationBarTitleText": "心/肌电图室"
 }
