@@ -44,7 +44,7 @@ Page({
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
-          if (data.length >= 6) {
+          if (data.length >= 5 && wx.getStorageSync('isShowAd')) {
             that.setData({
               isAdShow: true
             });
@@ -144,7 +144,7 @@ Page({
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
-          if (data.length >= 6) {
+          if (data.length >= 5 && wx.getStorageSync('isShowAd')) {
             that.setData({
               isAdShow: true
             });

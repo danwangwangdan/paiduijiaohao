@@ -5,6 +5,7 @@
     <view class="page__desc">请选择想要查看的排队叫号信息科室</view>
   </view>
   <wux-cell-group title="">
+    <wux-cell title="妇产科门诊" is-link url="/pages/fckmz/fckmz" extra="门诊部二楼"></wux-cell>
     <wux-cell title="B超室" is-link url="/pages/bchao/bchao" extra="门诊部三楼"></wux-cell>
     <wux-cell title="心/肌电图室" is-link url="/pages/xdt/xdt" extra="门诊部三楼"></wux-cell>
     <wux-cell title="脑电图室" is-link url="/pages/ndt/ndt" extra="门诊部三楼"></wux-cell>
