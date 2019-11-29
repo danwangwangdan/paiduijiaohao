@@ -1,9 +1,11 @@
-<wux-refresher id="wux-refresher" bind:refresh="onRefresh">
+
   <view  style='{{height}}' class="page">
-    <view class="page__hd">
+      <ad wx:if="{{isAdShow}}" unit-id="adunit-73ba6608d7177e7c" ad-type="video" ad-theme="white"></ad>
+<view wx:if="{{isAdShow}}"  class="divLine"></view>
+    <!-- <view class="page__hd">
       <view class="page__title">脑电图室</view>
       <view class="page__desc"> 本排队信息仅供参考，请以医生叫号时间为准。入队时间距现在过长的病人可能是因为多次呼叫未到，医生可能会选择不呼叫这类病人</view>
-    </view>
+    </view> -->
     <wux-tabs controlled current="{{ currentTab }}" bindchange="onChange">
       <wux-tab key="no7">
        <wux-badge count="{{count}}">7号窗口</wux-badge></wux-tab>
@@ -13,7 +15,7 @@
     </view>
     <view>
       <scroll-view>
-      <ad wx:if="{{isAdShow}}" unit-id="adunit-9dcb6c0aaea9675e"></ad>
+      <!-- <ad wx:if="{{isAdShow}}" unit-id="adunit-9dcb6c0aaea9675e"></ad> -->
         <view wx:if="{{!isNull}}" style="margin-top:15rpx">
           <wux-cell-group title="">
             <block wx:key="id" wx:for="{{patientList}}">
@@ -28,7 +30,7 @@
     </view>
   </view>
 
-</wux-refresher>
+
 <!-- <modal title="提醒设置" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
   <view>
     <wux-button block size="default" bind:click="copy" type="balanced">

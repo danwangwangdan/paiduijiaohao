@@ -26,5 +26,6 @@
     "wux-badge": "../../plugins/wux/badge/index",
     "wux-refresher": "../../plugins/wux/refresher/index"
   },
+    "enablePullDownRefresh": true,
   "navigationBarTitleText": "脑电图室"
 }

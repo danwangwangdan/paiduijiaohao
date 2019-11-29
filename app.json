@@ -10,11 +10,13 @@
     "pages/neikuijing/neikuijing"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
+  "enablePullDownRefresh": true,
   "networkTimeout": {
     "request": 15000,
     "uploadFile": 15000

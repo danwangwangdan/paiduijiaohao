@@ -2,9 +2,6 @@
 //获取应用实例
 var util = require('../../data.js');
 const app = getApp();
-import {
-  $stopWuxRefresher
-} from '../../plugins/wux/index'
 Page({
   data: {
     height: 'height:0rpx',
@@ -40,7 +37,7 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh()
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
@@ -102,18 +99,25 @@ Page({
         }
       },
       fail(e) {
+
         wx.showToast({
           title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
+        that.setData({
+          initialText: '连接服务器失败,请稍后重试',
+          isLoading: false,
+          isNull: true,
+          count: 0
+        });
       }
     });
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onRefresh() {
+  onPullDownRefresh: function() {
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
@@ -139,8 +143,9 @@ Page({
       method: 'GET',
       success(res) {
         console.log(res.data);
+        console.log('停止刷新');
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
@@ -153,29 +158,102 @@ Page({
               isAdShow: false
             });
           }
+          switch (that.data.currentTab) {
+            case 'no1':
+              that.setData({
+                count1: data.length
+              });
+              break;
+            case 'no2':
+              that.setData({
+                count2: data.length
+              });
+              break;
+            case 'no3':
+              that.setData({
+                count3: data.length
+              });
+              break;
+            case 'no4':
+              that.setData({
+                count4: data.length
+              });
+              break;
+          }
+
           if (data != null && data.length != 0) {
             that.setData({
               patientList: data,
               isLoading: false,
               isNull: false,
-              count1: data.length
             });
+            switch (that.data.currentTab) {
+              case 'no1':
+                that.setData({
+                  count1: data.length
+                });
+                break;
+              case 'no2':
+                that.setData({
+                  count2: data.length
+                });
+                break;
+              case 'no3':
+                that.setData({
+                  count3: data.length
+                });
+                break;
+              case 'no4':
+                that.setData({
+                  count4: data.length
+                });
+                break;
+            }
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
               isNull: true,
-              count1: 0
+
             });
+            switch (currentTab) {
+              case 'no1':
+                that.setData({
+                  count1: 0
+                });
+                break;
+              case 'no2':
+                that.setData({
+                  count2: 0
+                });
+                break;
+              case 'no3':
+                that.setData({
+                  count3: 0
+                });
+                break;
+              case 'no4':
+                that.setData({
+                  count4: 0
+                });
+                break;
+            }
           }
         }
       },
       fail(e) {
+
         wx.showToast({
           title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
+        that.setData({
+          initialText: '连接服务器失败,请稍后重试',
+          isLoading: false,
+          isNull: true,
+          count: 0
+        });
       }
     });
   },
@@ -204,20 +282,20 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
         if (res.data.code == 1) {
           var data = res.data.data;
           if (data.code == 1) {
             wx.showToast({
               title: '设置提醒成功，请留意微信服务通知消息！',
               icon: 'none',
-              duration: 2000
+              duration: 3000
             })
           } else {
             wx.showToast({
               title: '服务器异常，请稍后重试！',
               icon: 'none',
-              duration: 2000
+              duration: 3000
             })
           }
         }
@@ -226,7 +304,7 @@ Page({
         wx.showToast({
           title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
       }
     });

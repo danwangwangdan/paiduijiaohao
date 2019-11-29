@@ -2,9 +2,6 @@
 //获取应用实例
 const app = getApp()
 var util = require('../../data.js');
-import {
-  $stopWuxRefresher
-} from '../../plugins/wux/index'
 Page({
   data: {
     height: 'height:0rpx',
@@ -37,7 +34,8 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
+
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
@@ -93,7 +91,7 @@ Page({
           wx.showToast({
             title: '网络请求失败，请稍后重试！',
             icon: 'none',
-            duration: 2000
+            duration: 3000
           })
         }
       },
@@ -101,7 +99,7 @@ Page({
         wx.showToast({
           title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
       }
     });
@@ -109,7 +107,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onRefresh() {
+  onPullDownRefresh: function () {
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
@@ -135,7 +133,8 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
+
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
@@ -152,15 +151,48 @@ Page({
             that.setData({
               patientList: data,
               isLoading: false,
-              isNull: false,
-              count1:data.length
+              isNull: false
+
             });
+            switch (that.data.currentTab) {
+              case 'wtwj':
+                that.setData({
+                  count1: data.length
+                });
+                break;
+              case 'wtwj':
+                that.setData({
+                  count2: data.length
+                });
+                break;
+              case 'dzcj':
+                that.setData({
+                  count3: data.length
+                });
+                break;
+            }
           } else {
+            switch (that.data.currentTab) {
+              case 'wtwj':
+                that.setData({
+                  count1: 0
+                });
+                break;
+              case 'wtwj':
+                that.setData({
+                  count2: 0
+                });
+                break;
+              case 'dzcj':
+                that.setData({
+                  count3: 0
+                });
+                break;
+            }
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true,
-              count1:0
+              isNull: true
             });
           }
         } else {
@@ -171,7 +203,7 @@ Page({
           wx.showToast({
             title: '网络请求失败，请稍后重试！',
             icon: 'none',
-            duration: 2000
+            duration: 3000
           })
         }
       },
@@ -179,7 +211,7 @@ Page({
         wx.showToast({
           title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
       }
     });

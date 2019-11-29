@@ -19,7 +19,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onRefresh() {
+  onPullDownRefresh: function () {
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
@@ -46,7 +46,7 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
@@ -80,7 +80,7 @@ Page({
         wx.showToast({
           title: '连接服务器失败,' + e.errMsg,
           icon: 'none',
-          duration: 2000
+          duration: 3000
         })
       }
     });

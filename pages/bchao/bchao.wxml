@@ -1,22 +1,23 @@
-<wux-refresher id="wux-refresher" bind:refresh="onRefresh">
+<!-- <wux-refresher id="wux-refresher" bind:refresh="onRefresh"> -->
   <view style='{{height}}' class="page">
-    <view class="page__hd">
+  <ad wx:if="{{isAdShow}}" unit-id="adunit-73ba6608d7177e7c" ad-type="video" ad-theme="white"></ad>
+<view wx:if="{{isAdShow}}"  class="divLine"></view>
+    <!-- <view class="page__hd">
       <view class="page__title">B超室</view>
       <view class="page__desc"> 本排队信息仅供参考，请以医生叫号时间为准。入队时间距现在过长的病人可能是因为多次呼叫未到，医生可能会选择不呼叫这类病人</view>
-    </view>
-    
+    </view>  -->
     <wux-tabs controlled current="{{ currentTab }}" bindchange="onChange">
       <wux-tab key="no1">
-        <wux-badge count="{{count1}}">一号窗口</wux-badge>
+        <wux-badge count="{{count1}}">1号窗口</wux-badge>
       </wux-tab>
       <wux-tab key="no2">
-        <wux-badge count="{{count2}}">二号窗口</wux-badge>
+        <wux-badge count="{{count2}}">2号窗口</wux-badge>
       </wux-tab>
       <wux-tab key="no3">
-        <wux-badge count="{{count3}}">三号窗口</wux-badge>
+        <wux-badge count="{{count3}}">3号窗口</wux-badge>
       </wux-tab>
       <wux-tab key="no4" >
-        <wux-badge count="{{count4}}">四号窗口</wux-badge>
+        <wux-badge count="{{count4}}">4号窗口</wux-badge>
       </wux-tab>
     </wux-tabs>
     <view wx:if="{{isLoading}}" style="margin-top:320rpx" class="container">
@@ -24,7 +25,8 @@
     </view>
     <view>
       <scroll-view>
-       <ad wx:if="{{isAdShow}}" unit-id="adunit-9dcb6c0aaea9675e"></ad>
+      
+       <!-- <ad wx:if="{{isAdShow}}" unit-id="adunit-9dcb6c0aaea9675e"></ad> -->
         <view wx:if="{{!isNull}}" style="margin-top:15rpx">
         
           <wux-cell-group title="">
@@ -43,7 +45,7 @@
     </view>
   </view>
 
-</wux-refresher>
+<!-- </wux-refresher> -->
 <!-- <modal title="提醒设置" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
   <view>
     <wux-button disabled="{{isBtnDis}}" block size="default" bind:click="toNotify" type="balanced">

@@ -6,7 +6,7 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    isShow: false,
+    isShow: true,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -36,26 +36,26 @@ Page({
   },
   onShow: function () {
     var that = this;
-    wx.request({
-      url: 'https://loveshiming.oicp.vip/hishelp/common/show',
-      method: 'GET',
-      success(res) {
-        console.log(res.data);
-        if (res.data != null && res.data.data != null) {
-          that.setData({
-            isShow: res.data.data.noticeText == '1' ? true : false
-          })
-        }
-      },
-      fail() {
-        $stopWuxRefresher() //停止下拉刷新
-        wx.showToast({
-          title: '网络请求失败，请稍后重试！',
-          icon: 'none',
-          duration: 3000
-        })
-      }
-    });
+    // wx.request({
+    //   url: 'https://loveshiming.oicp.vip/hishelp/common/show',
+    //   method: 'GET',
+    //   success(res) {
+    //     console.log(res.data);
+    //     if (res.data != null && res.data.data != null) {
+    //       that.setData({
+    //         isShow: res.data.data.noticeText == '1' ? true : false
+    //       })
+    //     }
+    //   },
+    //   fail() {
+    //     $stopWuxRefresher() //停止下拉刷新
+    //     wx.showToast({
+    //       title: '网络请求失败，请稍后重试！',
+    //       icon: 'none',
+    //       duration: 3000
+    //     })
+    //   }
+    // });
     wx.request({
       url: 'https://loveshiming.oicp.vip/hishelp/common/showAd',
       method: 'GET',

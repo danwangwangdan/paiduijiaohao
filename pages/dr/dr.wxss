@@ -3,7 +3,7 @@ form button {
   padding: 0;
 }
 .divLine {
-  background: #e0e3da;
+  background: #d1d1d0;
   width: 100%;
   height: 2rpx;
 }

@@ -2,9 +2,6 @@
 //获取应用实例
 var util = require('../../data.js');
 const app = getApp()
-import {
-  $stopWuxRefresher
-} from '../../plugins/wux/index'
 Page({
   data: {
     height: 'height:0rpx',
@@ -14,7 +11,7 @@ Page({
     patientList: [],
     isLoading: true,
     isNull: false,
-    isBtnDis: false, 
+    isBtnDis: false,
     initialText: '',
     clickOne: 0,
     count: 0
@@ -22,11 +19,11 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onRefresh() {
+  onPullDownRefresh: function () {
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
-  onReady: function () {
+  onReady: function() {
     var that = this;
     console.log("onReady")
     var res = wx.getSystemInfoSync();
@@ -34,7 +31,7 @@ Page({
       height: "height:" + res.windowHeight + "px"
     })
   },
-  onShow: function () {
+  onShow: function() {
     var that = this;
     that.setData({
       isLoading: true,
@@ -48,7 +45,7 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
         if (res.data.code == 1) {
           var data = res.data.data;
           console.log("数组大小：" + data.length);
@@ -78,19 +75,26 @@ Page({
           }
         }
       },
-        fail(e) {
-            wx.showToast({
-                title: '连接服务器失败,' + e.errMsg,
-                icon: 'none',
-                duration: 2000
-            })
-        }
+      fail(e) {
+
+        wx.showToast({
+          title: '连接服务器失败,' + e.errMsg,
+          icon: 'none',
+          duration: 3000
+        })
+        that.setData({
+          initialText: '连接服务器失败,请稍后重试',
+          isLoading: false,
+          isNull: true,
+          count: 0
+        });
+      }
     });
   },
-  onLoad: function () {
+  onLoad: function() {
 
   },
-  toClick: function (e) {
+  toClick: function(e) {
     console.log(e)
     let patientId = e.currentTarget.dataset.id;
     console.log('病人ID:' + patientId);
@@ -98,9 +102,9 @@ Page({
       modalHidden: false,
       clickOne: patientId
     });
-   
+
   },
-  toNotify: function () {
+  toNotify: function() {
     var that = this;
     wx.request({
       url: app.globalData.localApiUrl + '/common/notify?pid=' + that.data.clickOne + '&ca=' + util.generateCA(),
@@ -108,7 +112,7 @@ Page({
       success(res) {
         console.log(res.data);
         wx.hideNavigationBarLoading() //完成停止加载
-        $stopWuxRefresher() //停止下拉刷新
+        wx.stopPullDownRefresh() //停止下拉刷新
         if (res.data.code == 1) {
           var data = res.data.data;
           if (data.code == 1) {
@@ -118,36 +122,36 @@ Page({
             wx.showToast({
               title: '设置提醒成功，请留意微信服务通知消息！',
               icon: 'none',
-              duration: 2000
+              duration: 3000
             })
           } else {
             wx.showToast({
               title: '服务器异常，请稍后重试！',
               icon: 'none',
-              duration: 2000
+              duration: 3000
             })
           }
         }
       },
-        fail(e) {
-            wx.showToast({
-                title: '连接服务器失败,' + e.errMsg,
-                icon: 'none',
-                duration: 2000
-            })
-        }
+      fail(e) {
+        wx.showToast({
+          title: '连接服务器失败,' + e.errMsg,
+          icon: 'none',
+          duration: 3000
+        })
+      }
     });
 
   },
-  toView: function (e) {
-   
+  toView: function(e) {
+
   },
-  modalCandel: function () {
+  modalCandel: function() {
     this.setData({
       modalHidden: true
     })
   },
-  modalConfirm: function () {
+  modalConfirm: function() {
     this.setData({
       modalHidden: true
     })
