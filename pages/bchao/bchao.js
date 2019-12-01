@@ -158,86 +158,51 @@ Page({
               isAdShow: false
             });
           }
-          switch (that.data.currentTab) {
-            case 'no1':
-              that.setData({
-                count1: data.length
-              });
-              break;
-            case 'no2':
-              that.setData({
-                count2: data.length
-              });
-              break;
-            case 'no3':
-              that.setData({
-                count3: data.length
-              });
-              break;
-            case 'no4':
-              that.setData({
-                count4: data.length
-              });
-              break;
-          }
-
           if (data != null && data.length != 0) {
             that.setData({
               patientList: data,
               isLoading: false,
-              isNull: false,
+              isNull: false
             });
-            switch (that.data.currentTab) {
-              case 'no1':
-                that.setData({
-                  count1: data.length
-                });
-                break;
-              case 'no2':
-                that.setData({
-                  count2: data.length
-                });
-                break;
-              case 'no3':
-                that.setData({
-                  count3: data.length
-                });
-                break;
-              case 'no4':
-                that.setData({
-                  count4: data.length
-                });
-                break;
+            if (current == 'no1') {
+              that.setData({
+                count1: data.length,
+                count2: 0,
+                count3: 0,
+                count4: 0
+              });
+            } else if (current == 'no2') {
+              that.setData({
+                count2: data.length,
+                count1: 0,
+                count3: 0,
+                count4: 0
+              });
+            } else if (current == 'no3') {
+              that.setData({
+                count3: data.length,
+                count2: 0,
+                count1: 0,
+                count4: 0
+              });
+            } else if (current == 'no4') {
+              that.setData({
+                count4: data.length,
+                count2: 0,
+                count1: 0,
+                count3: 0
+              });
             }
           } else {
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
               isNull: true,
-
+              count2: 0,
+              count1: 0,
+              count3: 0,
+              count4: 0
             });
-            switch (currentTab) {
-              case 'no1':
-                that.setData({
-                  count1: 0
-                });
-                break;
-              case 'no2':
-                that.setData({
-                  count2: 0
-                });
-                break;
-              case 'no3':
-                that.setData({
-                  count3: 0
-                });
-                break;
-              case 'no4':
-                that.setData({
-                  count4: 0
-                });
-                break;
-            }
           }
         }
       },

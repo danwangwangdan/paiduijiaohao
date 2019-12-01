@@ -16,7 +16,6 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
-  "enablePullDownRefresh": true,
   "networkTimeout": {
     "request": 15000,
     "uploadFile": 15000
