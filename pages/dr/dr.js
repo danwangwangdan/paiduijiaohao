@@ -16,6 +16,7 @@ Page({
     clickOne: 0,
     count: 0
   },
+  onShareAppMessage: function () { },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */

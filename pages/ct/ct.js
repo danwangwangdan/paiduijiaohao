@@ -31,6 +31,7 @@ Page({
       height: "height:" + res.windowHeight + "px"
     })
   },
+  onShareAppMessage: function () { },
   onShow: function () {
     var that = this;
     that.setData({

@@ -15,6 +15,8 @@
   <view style='margin-top:40rpx;margin-left:60rpx;margin-right:60rpx;'>
     <wux-button block size="default " bind:click="toHelp" type="balanced ">
       <wux-icon type="ios-help-circle " size="17 " /> 使用说明</wux-button>
+       <wux-button block size="default "openType='share'type="positive ">
+      <wux-icon type="ios-paper-plane" size="17 " /> 分享朋友</wux-button>
     <wux-button block size="default " outline openType='feedback' type="balanced ">
       <wux-icon type="ios-bulb" size="17 " /> 意见反馈</wux-button>
 

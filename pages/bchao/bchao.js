@@ -121,6 +121,7 @@ Page({
     this.onShow();
     wx.showNavigationBarLoading() //在标题栏中显示加载
   },
+  onShareAppMessage: function () { },
   onReady: function() {
     var that = this;
     console.log("onReady")

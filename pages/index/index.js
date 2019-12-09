@@ -22,6 +22,7 @@ Page({
       url: '../help/help'
     })
   },
+  
   //事件处理函数
   toPro: function () {
     console.log("即将跳转")
@@ -34,6 +35,7 @@ Page({
       }
     })
   },
+  onShareAppMessage: function () {},
   onShow: function () {
     var that = this;
     // wx.request({
