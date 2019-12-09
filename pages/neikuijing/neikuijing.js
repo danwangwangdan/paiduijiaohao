@@ -152,47 +152,34 @@ Page({
               patientList: data,
               isLoading: false,
               isNull: false
-
             });
-            switch (that.data.currentTab) {
-              case 'wtwj':
-                that.setData({
-                  count1: data.length
-                });
-                break;
-              case 'wtwj':
-                that.setData({
-                  count2: data.length
-                });
-                break;
-              case 'dzcj':
-                that.setData({
-                  count3: data.length
-                });
-                break;
+            if (current == 'ptwj') {
+              that.setData({
+                count1: data.length,
+                count2: 0,
+                count3: 0
+              });
+            } else if (current == 'wtwj') {
+              that.setData({
+                count2: data.length,
+                count1: 0,
+                count3: 0
+              });
+            } else if (current == 'dzcj') {
+              that.setData({
+                count3: data.length,
+                count2: 0,
+                count1: 0
+              });
             }
           } else {
-            switch (that.data.currentTab) {
-              case 'wtwj':
-                that.setData({
-                  count1: 0
-                });
-                break;
-              case 'wtwj':
-                that.setData({
-                  count2: 0
-                });
-                break;
-              case 'dzcj':
-                that.setData({
-                  count3: 0
-                });
-                break;
-            }
             that.setData({
               initialText: '这个窗口还没有人在排队',
               isLoading: false,
-              isNull: true
+              isNull: true,
+              count2: 0,
+              count1: 0,
+              count3: 0,
             });
           }
         } else {
