@@ -27,5 +27,5 @@
     "wux-refresher": "../../plugins/wux/refresher/index"
   },
     "enablePullDownRefresh": true,
-  "navigationBarTitleText": "照片室"
+  "navigationBarTitleText": "照片室1"
 }
