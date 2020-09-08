@@ -153,19 +153,19 @@ Page({
               isLoading: false,
               isNull: false
             });
-            if (current == 'ptwj') {
+            if (that.data.currentTab == 'ptwj') {
               that.setData({
                 count1: data.length,
                 count2: 0,
                 count3: 0
               });
-            } else if (current == 'wtwj') {
+            } else if (that.data.currentTab == 'wtwj') {
               that.setData({
                 count2: data.length,
                 count1: 0,
                 count3: 0
               });
-            } else if (current == 'dzcj') {
+            } else if (that.data.currentTab == 'dzcj') {
               that.setData({
                 count3: data.length,
                 count2: 0,

@@ -29,7 +29,7 @@ Page({
       isNull: true,
       initialText: ''
     });
-    let current = e.detail.key;
+    var current = e.detail.key;
     console.log("current:" + current);
     wx.request({
       url: app.globalData.localApiUrl + '/queue/list?office=bcs&room=' + current + '&ca=' + util.generateCA(),
@@ -165,28 +165,28 @@ Page({
               isLoading: false,
               isNull: false
             });
-            if (current == 'no1') {
+            if (that.data.currentTab == 'no1') {
               that.setData({
                 count1: data.length,
                 count2: 0,
                 count3: 0,
                 count4: 0
               });
-            } else if (current == 'no2') {
+            } else if (that.data.currentTab == 'no2') {
               that.setData({
                 count2: data.length,
                 count1: 0,
                 count3: 0,
                 count4: 0
               });
-            } else if (current == 'no3') {
+            } else if (that.data.currentTab == 'no3') {
               that.setData({
                 count3: data.length,
                 count2: 0,
                 count1: 0,
                 count4: 0
               });
-            } else if (current == 'no4') {
+            } else if (that.data.currentTab == 'no4') {
               that.setData({
                 count4: data.length,
                 count2: 0,
